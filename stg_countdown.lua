@@ -294,13 +294,6 @@ local function reset_stopwatch(props, prop)
     state.activate_timer = obs.timer.add(activate_timer, 500)
 end
 
-local function stop_stopwatch(props, prop)
-    local state = State.get_instance()
-    if state.activate_timer ~= nil then
-        obs.timer.remove(state.activate_timer)
-    end
-end
-
 -- Obs standard interface functions
 
 function script_description()
@@ -413,12 +406,6 @@ function script_properties()
         name = "restart_button",
         label = "Restart countdown",
         callback = reset_stopwatch
-    })
-
-    obs.add_button_property(props, {
-        name = "stop_button",
-        label = "Stop countdown",
-        callback = stop_stopwatch
     })
 
     return props
