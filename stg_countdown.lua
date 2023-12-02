@@ -37,6 +37,7 @@ function obs.get_scene_names()
             table.insert(scene_names, name)
         end
     end
+    obslua.source_list_release(scenes)
     return scene_names
 end
 
@@ -49,6 +50,7 @@ function obs.switch_to_scene(scene_name)
             break
         end
     end
+    obslua.source_list_release(scenes)
 end
 
 function obs.create_props()
@@ -233,7 +235,6 @@ local function set_clock_text(clock_text, settings)
     end
 end
 
---
 local function calc_countdown(settings, timestamp_now)
     local timespan_info = extract_timespan_info_from(settings)
     local time_now = os.date("*t", timestamp_now)
